@@ -5,32 +5,33 @@ import (
 	"testing"
 )
 
+// This repo is a public one, please remove any sensitive information before pushing to github
 var (
-	SIPInviteFromAudioCodesSBC = "INVITE sip:siprec-tcp.voice-staging.cresta.ai@siprec-tcp.voice-staging.cresta.ai;user=phone SIP/2.0\r\n" +
-		"Via: SIP/2.0/TCP 44.233.31.102:5060;alias;branch=z9hG4bKac586296494\r\n" +
+	SIPInviteFromAudioCodesSBC = "INVITE sip:siprec-ip@siprec-ip;user=phone SIP/2.0\r\n" +
+		"Via: SIP/2.0/TCP 8.8.8.8:5060;alias;branch=z9hG4bKac586296494\r\n" +
 		"Max-Forwards: 70\r\n" +
 		"From: <sip:10.0.0.31;user=phone>;tag=1c1789648591\r\n" +
-		"To: <sip:siprec-tcp.voice-staging.cresta.ai@siprec-tcp.voice-staging.cresta.ai;user=phone>\r\n" +
-		"Call-ID: 1974564438218202316425@44.233.31.102\r\n" +
+		"To: <sip:siprec-ip@siprec-ip;user=phone>\r\n" +
+		"Call-ID: 1974564438218202316425@8.8.8.8\r\n" +
 		"CSeq: 1 INVITE\r\n" +
-		"Contact: <sip:44.233.31.102:5060;transport=tcp>;+sip.src\r\n" +
+		"Contact: <sip:8.8.8.8:5060;transport=tcp>;+sip.src\r\n" +
 		"Supported: replaces,resource-priority,sdp-anat\r\n" +
 		"Allow: REGISTER,OPTIONS,INVITE,ACK,CANCEL,BYE,NOTIFY,PRACK,REFER,INFO,SUBSCRIBE,UPDATE\r\n" +
 		"Require: siprec\r\n" +
 		"User-Agent: Mediant VE SBC/v.7.20A.256.399\r\n" +
 		"Content-Type: multipart/mixed;boundary=boundary_ac15d5\r\n" +
-		"Content-Length: 2048\r\n" +
+		"Content-Length: 1986\r\n" +
 		"\r\n" +
 		"--boundary_ac15d5\r\n" +
 		"Content-Type: application/sdp\r\n" +
 		"\r\n" +
 		"v=0\r\n" +
-		"o=AudiocodesGW 1194408899 488170781 IN IP4 44.233.31.102\r\n" +
+		"o=AudiocodesGW 1194408899 488170781 IN IP4 8.8.8.8\r\n" +
 		"s=SBC-Call\r\n" +
-		"c=IN IP4 44.233.31.102\r\n" +
+		"c=IN IP4 8.8.8.8\r\n" +
 		"t=0 0\r\n" +
 		"m=audio 7232 RTP/AVP 0 101\r\n" +
-		"c=IN IP4 44.233.31.102\r\n" +
+		"c=IN IP4 8.8.8.8\r\n" +
 		"a=ptime:20\r\n" +
 		"a=sendonly\r\n" +
 		"a=label:1\r\n" +
@@ -38,7 +39,7 @@ var (
 		"a=rtpmap:101 telephone-event/8000\r\n" +
 		"a=fmtp:101 0-15,16\r\n" +
 		"m=audio 7236 RTP/AVP 0 101\r\n" +
-		"c=IN IP4 44.233.31.102\r\n" +
+		"c=IN IP4 8.8.8.8\r\n" +
 		"a=ptime:20\r\n" +
 		"a=sendonly\r\n" +
 		"a=label:2\r\n" +
@@ -60,14 +61,14 @@ var (
 		"    <group-ref>00000000-0000-00b6-d16f-0000000004e4</group-ref>\r\n" +
 		"    <associate-time>2023-08-21T16:42:05Z</associate-time>\r\n" +
 		"  </session>\r\n" +
-		"  <participant id=\"+18336980136\" session=\"0000-0000-0000-0000-bf41fa8f111f3e43\">\r\n" +
-		"    <nameID aor=\"+18336980136@cresta-siprec.pstn.twilio.com\"></nameID>\r\n" +
+		"  <participant id=\"+18888888888\" session=\"0000-0000-0000-0000-bf41fa8f111f3e43\">\r\n" +
+		"    <nameID aor=\"+18888888888@fakeip.com\"></nameID>\r\n" +
 		"    <associate-time>2023-08-21T16:42:05Z</associate-time>\r\n" +
 		"    <send>00000000-1c3c-00b6-d16f-0000000004e4</send>\r\n" +
 		"    <recv>00000001-2d1c-00b6-d16f-0000000004e4</recv>\r\n" +
 		"  </participant>\r\n" +
-		"  <participant id=\"+14159918698\" session=\"0000-0000-0000-0000-bf41fa8f111f3e43\">\r\n" +
-		"    <nameID aor=\"+14159918698@cresta-sbc-dev.sip.twilio.com\"></nameID>\r\n" +
+		"  <participant id=\"+17777777777\" session=\"0000-0000-0000-0000-bf41fa8f111f3e43\">\r\n" +
+		"    <nameID aor=\"+17777777777@fakeip.com\"></nameID>\r\n" +
 		"    <associate-time>2023-08-21T16:42:05Z</associate-time>\r\n" +
 		"    <send>00000001-2d1c-00b6-d16f-0000000004e4</send>\r\n" +
 		"    <recv>00000000-1c3c-00b6-d16f-0000000004e4</recv>\r\n" +
