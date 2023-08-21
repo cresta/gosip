@@ -53,3 +53,9 @@ should consider Asterisk, FreeSWITCH, or SER.
 - [RFC3665: SIP basic call flows](https://tools.ietf.org/html/rfc3665)
 - [RFC3666: SIP PSTN call flows](https://tools.ietf.org/html/rfc3666)
 - [RFC6216: Example call flows using SIP security mechanisms](https://tools.ietf.org/html/rfc6216)
+
+# Development Guide
+In Mac, use `brew install ragel` to install ragel.
+Then in the root folder of this repo run this command to generate related code: `ragel -Z -G2 ./sip/msg_parse.rl`
+
+Ragel user guide: https://www.colm.net/files/ragel/ragel-guide-6.10.pdf

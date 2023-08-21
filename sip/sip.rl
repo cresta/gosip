@@ -349,8 +349,8 @@ unquoted_string = ( token LWS )+;
 # stored in Msg by way of type interface and we don't support any types that
 # take parameters.
 ctype_param     = SEMI token EQUAL ( token | quoted_string );
-ctype_mime      = ( token "/" token ) >mark %ContentType;
-ctype          := ctype_mime ctype_param* CRLF @goto_header;
+ctype_mime      = ( token "/" token ) >mark ;
+ctype          := ctype_mime ctype_param* %ContentType CRLF @goto_header;
 
 # Parameter Parsing
 #
