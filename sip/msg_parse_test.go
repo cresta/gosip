@@ -94,7 +94,8 @@ func TestParse(t *testing.T) {
 	if msg == nil || msg.Payload == nil {
 		t.Error("msg is nil")
 	}
-	if msg.Payload.ContentType() != "multipart/mixed;boundary=boundary_ac15d5" {
-		t.Error("content type is wrong")
+	expected := "multipart/mixed;boundary=boundary_ac15d5"
+	if msg.Payload.ContentType() != expected {
+		t.Errorf("content type is wrong, expected: %v, actual: %v", expected, msg.Payload.ContentType())
 	}
 }
