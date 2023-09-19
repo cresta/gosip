@@ -159,14 +159,6 @@ func (msg *Msg) Append(b *bytes.Buffer) {
 		b.WriteString("\r\n")
 	}
 
-	b.WriteString("From: ")
-	msg.From.Append(b)
-	b.WriteString("\r\n")
-
-	b.WriteString("To: ")
-	msg.To.Append(b)
-	b.WriteString("\r\n")
-
 	for viap := msg.Via; viap != nil; viap = viap.Next {
 		b.WriteString("Via: ")
 		viap.Append(b)
@@ -184,6 +176,14 @@ func (msg *Msg) Append(b *bytes.Buffer) {
 		msg.RecordRoute.Append(b)
 		b.WriteString("\r\n")
 	}
+
+	b.WriteString("From: ")
+	msg.From.Append(b)
+	b.WriteString("\r\n")
+
+	b.WriteString("To: ")
+	msg.To.Append(b)
+	b.WriteString("\r\n")
 
 	if msg.Contact != nil {
 		b.WriteString("Contact: ")
