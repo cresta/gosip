@@ -172,9 +172,19 @@ func (msg *Msg) Append(b *bytes.Buffer) {
 	}
 
 	if msg.RecordRoute != nil {
-		b.WriteString("Record-Route: ")
-		msg.RecordRoute.Append(b)
-		b.WriteString("\r\n")
+		// TODO: find a better way to print multiple Record-Route and replace below quick and dirty fix
+		current := msg.RecordRoute.Copy()
+		for {
+			if current == nil {
+				break
+			}
+			next := current.Next
+			current.Next = nil
+			b.WriteString("Record-Route: ")
+			current.Append(b)
+			b.WriteString("\r\n")
+			current = next
+		}
 	}
 
 	b.WriteString("From: ")
@@ -185,12 +195,6 @@ func (msg *Msg) Append(b *bytes.Buffer) {
 	msg.To.Append(b)
 	b.WriteString("\r\n")
 
-	if msg.Contact != nil {
-		b.WriteString("Contact: ")
-		msg.Contact.Append(b)
-		b.WriteString("\r\n")
-	}
-
 	b.WriteString("Call-ID: ")
 	b.WriteString(msg.CallID)
 	b.WriteString("\r\n")
@@ -200,6 +204,12 @@ func (msg *Msg) Append(b *bytes.Buffer) {
 	b.WriteString(" ")
 	b.WriteString(msg.CSeqMethod)
 	b.WriteString("\r\n")
+
+	if msg.Contact != nil {
+		b.WriteString("Contact: ")
+		msg.Contact.Append(b)
+		b.WriteString("\r\n")
+	}
 
 	if msg.UserAgent != "" {
 		b.WriteString("User-Agent: ")
